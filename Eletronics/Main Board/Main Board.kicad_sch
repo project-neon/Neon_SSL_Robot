@@ -1,0 +1,93 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 9c55052f-48ce-482f-9116-275e8c52377d)
+
+  (paper "A4")
+
+  (title_block
+    (title "Project view")
+    (date "2023-03-19")
+  )
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 184.15 53.34) (size 39.37 25.4) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 215 206 255 1.0000))
+    (uuid 7d9e1f2e-3a85-4b38-9cda-6ff66a356245)
+    (property "Sheet name" "Motor Control Circuit" (id 0) (at 184.15 52.6284 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "motorcontrolcircuit.kicad_sch" (id 1) (at 184.15 79.3246 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet (at 59.69 93.98) (size 40.64 24.13)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 197 255 205 1.0000))
+    (uuid 8b9a232e-7faa-4988-8c2c-da79f53fb3dd)
+    (property "Sheet name" "ESP32 S3 CIRCUIT" (id 0) (at 59.69 93.98 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "ESP32S3.kicad_sch" (id 1) (at 59.69 118.6946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet (at 185.42 95.25) (size 40.64 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 208 247 255 1.0000))
+    (uuid d61f1aa0-0047-4ce3-b0b1-dd877d44cec3)
+    (property "Sheet name" "STM32 CIRCUIT" (id 0) (at 185.42 94.5384 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "stm32circuit.kicad_sch" (id 1) (at 185.42 119.9646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet (at 123.19 93.98) (size 40.64 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 255 225 137 1.0000))
+    (uuid e376cead-5d62-4603-93fb-b0271804a22a)
+    (property "Sheet name" "Peripherals Circuit" (id 0) (at 123.19 93.2684 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "peripheralscircuit.kicad_sch" (id 1) (at 123.19 118.6946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet (at 120.65 53.34) (size 40.64 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 255 254 213 1.0000))
+    (uuid f0117347-2404-40f1-b32d-75bb535cab22)
+    (property "Sheet name" "Power Circuit" (id 0) (at 120.65 52.6284 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "powercircuit.kicad_sch" (id 1) (at 120.65 78.0546 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+    (path "/8b9a232e-7faa-4988-8c2c-da79f53fb3dd" (page "2"))
+    (path "/d61f1aa0-0047-4ce3-b0b1-dd877d44cec3" (page "3"))
+    (path "/f0117347-2404-40f1-b32d-75bb535cab22" (page "4"))
+    (path "/e376cead-5d62-4603-93fb-b0271804a22a" (page "5"))
+    (path "/7d9e1f2e-3a85-4b38-9cda-6ff66a356245" (page "6"))
+  )
+
+  (symbol_instances
+    (path "/d61f1aa0-0047-4ce3-b0b1-dd877d44cec3/3ae9eb73-8186-486e-9aaf-1c806c7efbd6"
+      (reference "U?") (unit 1) (value "STM32F103C8Tx") (footprint "Package_QFP:LQFP-48_7x7mm_P0.5mm")
+    )
+    (path "/8b9a232e-7faa-4988-8c2c-da79f53fb3dd/58ccb4f7-e396-4361-880c-0281a46456b1"
+      (reference "U?") (unit 1) (value "ESP32-S3-WROOM-1-N4") (footprint "ESP32WROOM S3:ESP32-S3-WROOM-1-N8")
+    )
+  )
+)

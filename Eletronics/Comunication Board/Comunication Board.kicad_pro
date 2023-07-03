@@ -441,6 +441,30 @@
     [
       "4c7888e1-33c4-4d9e-9379-8d84ea02e710",
       ""
+    ],
+    [
+      "9bba6ab3-e883-49a5-9d70-40b64b79e811",
+      "ESP32_S3"
+    ],
+    [
+      "cd0b335e-1823-49a1-af24-ff73c3936f82",
+      "Filter"
+    ],
+    [
+      "5ed939b2-ef8e-49b6-ba2b-f1c3d3dd1fd8",
+      "Power"
+    ],
+    [
+      "781b1835-6815-4bcd-b644-08f6955c6088",
+      "Bottons"
+    ],
+    [
+      "5e8a06e2-a335-4ba3-808d-a5ad2b04f309",
+      "USB"
+    ],
+    [
+      "092dad48-0d23-47a5-8e6b-9ea28283eebf",
+      "External"
     ]
   ],
   "text_variables": {}

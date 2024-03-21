@@ -1,116 +1,241 @@
-(kicad_sch (version 20230121) (generator eeschema)
-
-  (uuid 4c7888e1-33c4-4d9e-9379-8d84ea02e710)
-
-  (paper "A4")
-
-  (lib_symbols
-  )
-
-
-  (sheet (at 206.629 114.3) (size 43.815 28.575) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 092dad48-0d23-47a5-8e6b-9ea28283eebf)
-    (property "Sheetname" "External" (at 206.629 113.5884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "External.kicad_sch" (at 206.629 143.4596 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "7"))
-      )
-    )
-  )
-
-  (sheet (at 122.174 116.713) (size 43.434 27.686) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 5e8a06e2-a335-4ba3-808d-a5ad2b04f309)
-    (property "Sheetname" "USB" (at 122.174 116.0014 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "USB.kicad_sch" (at 122.174 144.9836 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "6"))
-      )
-    )
-  )
-
-  (sheet (at 206.121 42.926) (size 43.561 27.813) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 5ed939b2-ef8e-49b6-ba2b-f1c3d3dd1fd8)
-    (property "Sheetname" "Power" (at 206.121 42.2144 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "Power.kicad_sch" (at 206.121 71.3236 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "4"))
-      )
-    )
-  )
-
-  (sheet (at 40.64 116.078) (size 43.561 27.305) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 781b1835-6815-4bcd-b644-08f6955c6088)
-    (property "Sheetname" "Bottons" (at 40.64 115.3664 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "Bottons.kicad_sch" (at 40.64 143.9676 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "5"))
-      )
-    )
-  )
-
-  (sheet (at 38.481 44.323) (size 42.545 27.813) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 9bba6ab3-e883-49a5-9d70-40b64b79e811)
-    (property "Sheetname" "ESP32_S3" (at 38.481 43.6114 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "ESP32_S3.kicad_sch" (at 38.481 72.7206 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "2"))
-      )
-    )
-  )
-
-  (sheet (at 120.142 43.434) (size 43.434 29.337) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid cd0b335e-1823-49a1-af24-ff73c3936f82)
-    (property "Sheetname" "Filter" (at 120.142 42.7224 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "Filter.kicad_sch" (at 120.142 73.3556 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (instances
-      (project "Comunication Board"
-        (path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710" (page "3"))
-      )
-    )
-  )
-
-  (sheet_instances
-    (path "/" (page "1"))
-  )
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "4c7888e1-33c4-4d9e-9379-8d84ea02e710")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 206.629 114.3)
+		(size 43.815 28.575)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "092dad48-0d23-47a5-8e6b-9ea28283eebf")
+		(property "Sheetname" "External"
+			(at 206.629 113.5884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "External.kicad_sch"
+			(at 206.629 143.4596 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 122.174 116.713)
+		(size 43.434 27.686)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "5e8a06e2-a335-4ba3-808d-a5ad2b04f309")
+		(property "Sheetname" "USB"
+			(at 122.174 116.0014 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "USB.kicad_sch"
+			(at 122.174 144.9836 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 206.121 42.926)
+		(size 43.561 27.813)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "5ed939b2-ef8e-49b6-ba2b-f1c3d3dd1fd8")
+		(property "Sheetname" "Power"
+			(at 206.121 42.2144 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Power.kicad_sch"
+			(at 206.121 71.3236 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 40.64 116.078)
+		(size 43.561 27.305)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "781b1835-6815-4bcd-b644-08f6955c6088")
+		(property "Sheetname" "Bottons"
+			(at 40.64 115.3664 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Bottons.kicad_sch"
+			(at 40.64 143.9676 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 38.481 44.323)
+		(size 42.545 27.813)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9bba6ab3-e883-49a5-9d70-40b64b79e811")
+		(property "Sheetname" "ESP32_S3"
+			(at 38.481 43.6114 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ESP32_S3.kicad_sch"
+			(at 38.481 72.7206 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 120.142 43.434)
+		(size 43.434 29.337)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "cd0b335e-1823-49a1-af24-ff73c3936f82")
+		(property "Sheetname" "Filter"
+			(at 120.142 42.7224 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Filter.kicad_sch"
+			(at 120.142 73.3556 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
 )

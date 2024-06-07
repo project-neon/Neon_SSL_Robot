@@ -4,6 +4,15 @@
 	(generator_version "8.0")
 	(uuid "14773155-68f6-4410-8401-046c6b1c7f00")
 	(paper "A4")
+	(title_block
+		(title "Placa de comunicação")
+		(date "2024-05-04")
+		(rev "0")
+		(company "Project Neon")
+		(comment 1 "Autor: Leticia Martins")
+		(comment 2 "Revisão: Marcus Holanda")
+		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_01x10_Female"
 			(pin_names
@@ -1257,6 +1266,25 @@
 		)
 		(uuid "efe43721-6029-4848-804b-9fac18c94d99")
 	)
+	(text_box "Ajustes:\ntirar buzzer e colocar pino 9 à disposição na barra de pino,\ncolocar um pino de entrada de alimentação na barra de pinos"
+		(exclude_from_sim no)
+		(at 71.12 26.67 0)
+		(size 33.02 38.1)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "5199ce8d-c864-424d-bbe9-c49b9275f60a")
+	)
 	(text "Entrada reserva \nprogramação"
 		(exclude_from_sim no)
 		(at 168.275 90.932 0)
@@ -1791,7 +1819,7 @@
 		(fields_autoplaced yes)
 		(uuid "4a20110e-655a-42d0-b92a-ad085fd48021")
 		(property "Reference" "J2"
-			(at 185.293 75.184 0)
+			(at 185.293 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1799,7 +1827,7 @@
 			)
 		)
 		(property "Value" "Conn_01x10_Female"
-			(at 185.293 77.724 0)
+			(at 185.293 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)

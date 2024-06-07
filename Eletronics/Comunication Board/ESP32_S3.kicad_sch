@@ -4,6 +4,15 @@
 	(generator_version "8.0")
 	(uuid "92f93b74-3c2d-4541-8c4e-ff25b7232b72")
 	(paper "A4")
+	(title_block
+		(title "Placa de comunicação")
+		(date "2024-05-04")
+		(rev "0")
+		(company "Project Neon")
+		(comment 1 "Autor: Leticia Martins")
+		(comment 2 "Revisão: Marcus Holanda")
+		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
+	)
 	(lib_symbols
 		(symbol "libs:ESP32-S3-WROOM-1-N8R2"
 			(pin_names
@@ -1338,6 +1347,25 @@
 	(no_connect
 		(at 165.989 102.616)
 		(uuid "f589b6c3-9523-49f1-84b6-ef148eb9b9eb")
+	)
+	(text_box "Deixar os seguintes pinos disponiveis na barra de pinos:\nIO48,\nIO47,\nIO21,\nIO14,\nIO9"
+		(exclude_from_sim no)
+		(at 213.36 59.69 0)
+		(size 26.67 44.45)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "dfed445c-a285-42c5-a0c5-ce4465ba51dd")
 	)
 	(global_label "SCL"
 		(shape input)

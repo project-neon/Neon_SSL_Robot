@@ -4,6 +4,15 @@
 	(generator_version "8.0")
 	(uuid "d2b077ad-1f85-4fc7-a0ed-4cd66a00e090")
 	(paper "A4")
+	(title_block
+		(title "Placa de comunicação")
+		(date "2024-05-04")
+		(rev "0")
+		(company "Project Neon")
+		(comment 1 "Autor: Leticia Martins")
+		(comment 2 "Revisão: Marcus Holanda")
+		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
+	)
 	(lib_symbols
 		(symbol "Connector:USB_C_Receptacle_USB2.0"
 			(pin_names
@@ -1620,6 +1629,25 @@
 			(type default)
 		)
 		(uuid "ff37633b-27b1-4f08-b4a4-08a541b2a957")
+	)
+	(text_box "Ajustes:\nTrocar o diodo pelo tipo Schottky Barrier"
+		(exclude_from_sim no)
+		(at 208.28 52.07 0)
+		(size 34.29 60.96)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c6c3240b-4fe8-4b25-83d7-8039db412e51")
 	)
 	(global_label "USB_D+"
 		(shape input)

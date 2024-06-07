@@ -4,6 +4,15 @@
 	(generator_version "8.0")
 	(uuid "4a309188-e33f-4612-ba4f-1e0cb6e967d6")
 	(paper "A4")
+	(title_block
+		(title "Placa de comunicação")
+		(date "2024-05-04")
+		(rev "0")
+		(company "Project Neon")
+		(comment 1 "Autor: Leticia Martins")
+		(comment 2 "Revisão: Marcus Holanda")
+		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
+	)
 	(lib_symbols
 		(symbol "BATERIA_1"
 			(exclude_from_sim no)
@@ -1523,6 +1532,36 @@
 			(type default)
 		)
 		(uuid "f9734a04-1892-4dc5-a155-e21bc1940566")
+	)
+	(text_box "Ajustes:\n- Mover Led para lado 3.3V\n- Tirar swicht de power\n- Divisor de tensão para verificação da bateria"
+		(exclude_from_sim no)
+		(at 45.72 76.2 0)
+		(size 21.59 33.02)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "5e58647f-a1fc-407d-b226-3e3084ab367d")
+	)
+	(text "Mover Led para lado 3.3V"
+		(exclude_from_sim no)
+		(at 130.81 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 255 0 32 1)
+			)
+		)
+		(uuid "215e4b94-866d-41f6-b80e-8e73b27f7e28")
 	)
 	(text "Regulador de Tensão\n"
 		(exclude_from_sim no)

@@ -977,7 +977,7 @@
 				)
 			)
 		)
-		(symbol "Diode:1N4007"
+		(symbol "Diode:1N5822"
 			(pin_numbers hide)
 			(pin_names
 				(offset 1.016) hide)
@@ -992,7 +992,7 @@
 					)
 				)
 			)
-			(property "Value" "1N4007"
+			(property "Value" "1N5822"
 				(at 0 -2.54 0)
 				(effects
 					(font
@@ -1000,7 +1000,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+			(property "Footprint" "Diode_THT:D_DO-201AD_P15.24mm_Horizontal"
 				(at 0 -4.445 0)
 				(effects
 					(font
@@ -1009,7 +1009,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
+			(property "Datasheet" "http://www.vishay.com/docs/88526/1n5820.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1018,7 +1018,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "1000V 1A General Purpose Rectifier Diode, DO-41"
+			(property "Description" "40V 3A Schottky Barrier Rectifier Diode, DO-201AD"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1027,7 +1027,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "diode"
+			(property "ki_keywords" "diode Schottky"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1036,7 +1036,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "D*DO?41*"
+			(property "ki_fp_filters" "D*DO?201AD*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1045,19 +1045,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "1N4007_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
+			(symbol "1N5822_0_1"
 				(polyline
 					(pts
 						(xy 1.27 0) (xy -1.27 0)
@@ -1082,8 +1070,20 @@
 						(type none)
 					)
 				)
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 			)
-			(symbol "1N4007_1_1"
+			(symbol "1N5822_1_1"
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
@@ -1493,7 +1493,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.243 68.58) (xy 171.577 68.58)
+			(xy 166.243 68.58) (xy 171.45 68.58)
 		)
 		(stroke
 			(width 0)
@@ -1510,16 +1510,6 @@
 			(type default)
 		)
 		(uuid "71fb324e-9858-4daf-ac97-e998f74698c0")
-	)
-	(wire
-		(pts
-			(xy 179.197 68.58) (xy 184.023 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7baf4432-7808-4ce3-9720-a5200570288d")
 	)
 	(wire
 		(pts
@@ -1600,6 +1590,16 @@
 			(type default)
 		)
 		(uuid "dc47e40a-e68b-4550-9c15-f3ca476d576d")
+	)
+	(wire
+		(pts
+			(xy 179.07 68.58) (xy 184.023 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9f03ec9-eddf-4dde-8ac1-e0305ecd50ee")
 	)
 	(wire
 		(pts
@@ -1727,76 +1727,6 @@
 			(project "Comunication Board"
 				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
 					(reference "#PWR0102")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 175.387 68.58 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "16bb6f64-768b-41ef-afe2-b3e916259863")
-		(property "Reference" "D1"
-			(at 174.752 64.389 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-		(property "Value" "1N4007"
-			(at 172.212 65.405 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SMA"
-			(at 175.387 64.135 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
-			(at 175.387 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 175.387 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2d041a3a-ab0e-4d4e-a349-e3e1c7b436ff")
-		)
-		(pin "2"
-			(uuid "34db004c-7826-4809-a03c-38dc44b32fe9")
-		)
-		(instances
-			(project "Comunication Board"
-				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
-					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -2271,6 +2201,74 @@
 			(project "Comunication Board"
 				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
 					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N5822")
+		(at 175.26 68.58 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "834827c5-2086-4019-8cc7-e618e3dc3224")
+		(property "Reference" "D2"
+			(at 175.5775 62.738 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N5822"
+			(at 175.5775 65.278 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_DO-201AD_P15.24mm_Horizontal"
+			(at 175.26 64.135 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.vishay.com/docs/88526/1n5820.pdf"
+			(at 175.26 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "40V 3A Schottky Barrier Rectifier Diode, DO-201AD"
+			(at 175.26 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "647933cc-d161-44af-8b51-62e046642003")
+		)
+		(pin "2"
+			(uuid "0da34fcb-b3ce-4256-9838-c1b4972c8788")
+		)
+		(instances
+			(project ""
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
+					(reference "D2")
 					(unit 1)
 				)
 			)

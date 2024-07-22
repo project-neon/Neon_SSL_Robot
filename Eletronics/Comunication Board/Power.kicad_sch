@@ -1324,7 +1324,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10 uF"
+		(property "Value" "22 uF"
 			(at 149.606 108.204 0)
 			(effects
 				(font
@@ -1472,7 +1472,7 @@
 				)
 			)
 		)
-		(property "Value" "16 Ω"
+		(property "Value" "130 Ω"
 			(at 163.068 97.79 0)
 			(effects
 				(font

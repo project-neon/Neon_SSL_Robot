@@ -1,0 +1,464 @@
+(footprint "SW_SPST_TL3305A"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "https://www.e-switch.com/system/asset/product_line/data_sheet/213/TL3305.pdf")
+	(tags "TL3305 Series Tact Switch")
+	(property "Reference" "EN1"
+		(at -0.145 2.745 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "ea49d523-b8de-49f3-a274-56888aafa49e")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+				(italic yes)
+			)
+		)
+	)
+	(property "Value" "SW_Push"
+		(at 0 3.2 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "82daa019-489d-4378-9a26-f9a23c81db2b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "SW_SPST_TL3305A"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "43b7fd21-bf6e-46c4-9ddd-c5d1b7c3f277")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0585957a-dcd9-4658-8b39-c332e2330adb")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7c56e167-49ee-455f-b6d7-8ca4f5310173")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "en" "EN"
+		(at -0.035 2.945 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "50b8d00d-702e-40cc-8a27-1bb46e3a6644")
+		(effects
+			(font
+				(size 0.8 0.5)
+				(thickness 0.1)
+				(bold yes)
+				(italic yes)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.37 -2.37)
+		(end -2.37 -1.97)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2e0a4938-40fb-473f-a21e-5c2ca5835b4b")
+	)
+	(fp_line
+		(start -2.37 -2.37)
+		(end 2.37 -2.37)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3a6eefd8-7141-420e-ac0a-52cabcbb6c53")
+	)
+	(fp_line
+		(start -2.37 1.03)
+		(end -2.37 -1.03)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9140c042-229d-402b-8583-e9b41c9de70a")
+	)
+	(fp_line
+		(start -2.37 2.37)
+		(end -2.37 1.97)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "fbdbb8ae-edd3-4a97-8ab9-f9f03a45f0a0")
+	)
+	(fp_line
+		(start -2.37 2.37)
+		(end 2.37 2.37)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f2f2330e-136d-46b3-aae8-d465533524ce")
+	)
+	(fp_line
+		(start 2.37 -2.37)
+		(end 2.37 -1.97)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "083fcda0-0ebc-4a0b-a670-c4c394238305")
+	)
+	(fp_line
+		(start 2.37 1.03)
+		(end 2.37 -1.03)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c1ad87c8-d8f3-4c0d-9bd7-67f1bf0da846")
+	)
+	(fp_line
+		(start 2.37 2.37)
+		(end 2.37 1.97)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9c76e155-0096-430f-9dc6-2838b1a09e69")
+	)
+	(fp_line
+		(start -4 -2.5)
+		(end 4 -2.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "00bb5355-c595-4d50-91b2-70f0210c9a57")
+	)
+	(fp_line
+		(start -4 2.5)
+		(end -4 -2.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7a650f4e-f116-4783-8afb-cddb1b381555")
+	)
+	(fp_line
+		(start 4 -2.5)
+		(end 4 2.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "c56a1f9b-91c0-44a0-a78e-687007a9f068")
+	)
+	(fp_line
+		(start 4 2.5)
+		(end -4 2.5)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0ed6778a-9e06-4d01-aaeb-997a5551f259")
+	)
+	(fp_line
+		(start -3.75 -1.85)
+		(end -3.75 -1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "103bfb41-a1c9-4a2d-904f-5c586c8aac95")
+	)
+	(fp_line
+		(start -3.75 -1.15)
+		(end -2.25 -1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "bd01d1a3-15a2-4a21-95ca-79ae354c329f")
+	)
+	(fp_line
+		(start -3.75 1.15)
+		(end -3.75 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3a4051e3-6377-4007-8113-d6bdd51da4a2")
+	)
+	(fp_line
+		(start -3.75 1.85)
+		(end -2.25 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e3982f34-de85-46a7-8372-88638c38375a")
+	)
+	(fp_line
+		(start -3 -1.85)
+		(end -3 -1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a7d512ee-7605-49d2-b1c9-ab1b63a262c9")
+	)
+	(fp_line
+		(start -3 1.15)
+		(end -3 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "dc48609e-b950-49dd-85ae-d43b72863ca3")
+	)
+	(fp_line
+		(start -2.25 -2.25)
+		(end 2.25 -2.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "80ef72c8-ff74-4f1a-84f6-d63b0997f077")
+	)
+	(fp_line
+		(start -2.25 -1.85)
+		(end -3.75 -1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "cf09f60e-630e-49e5-9ed1-8d66adba7dd1")
+	)
+	(fp_line
+		(start -2.25 1.15)
+		(end -3.75 1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7939d31e-748c-424e-821d-f85e2e18902a")
+	)
+	(fp_line
+		(start -2.25 2.25)
+		(end -2.25 -2.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "fe94bda3-8c2a-4cc1-8776-c2aa79423e10")
+	)
+	(fp_line
+		(start 2.25 -2.25)
+		(end 2.25 2.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "560c93b2-6587-46db-8a77-978cd2ae03db")
+	)
+	(fp_line
+		(start 2.25 -1.15)
+		(end 3.75 -1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a49aceab-c528-4388-9896-a94850cc3c5b")
+	)
+	(fp_line
+		(start 2.25 1.15)
+		(end 3.75 1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b62f86bb-7425-4fcc-b1ac-b76e73f67d8c")
+	)
+	(fp_line
+		(start 2.25 2.25)
+		(end -2.25 2.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "631e3760-a4a8-48c1-91bd-5820e477cc8a")
+	)
+	(fp_line
+		(start 3 -1.85)
+		(end 3 -1.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c09916f0-7c80-4058-9e7b-a53e19163f6c")
+	)
+	(fp_line
+		(start 3 1.15)
+		(end 3 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b1dc91f8-2dbd-4955-8d44-ba814004d594")
+	)
+	(fp_line
+		(start 3.75 -1.85)
+		(end 2.25 -1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f47d12bc-fba6-4fe4-a209-0808f392cf7c")
+	)
+	(fp_line
+		(start 3.75 -1.15)
+		(end 3.75 -1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "89cf8827-887d-4f79-b5ad-71075b9afd21")
+	)
+	(fp_line
+		(start 3.75 1.15)
+		(end 3.75 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1bc1c1fd-726b-47ef-973e-717c0ee9ca84")
+	)
+	(fp_line
+		(start 3.75 1.85)
+		(end 2.25 1.85)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f2b21921-508c-438e-8fda-05ca25bb3a22")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 1.25 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "a65a5aa3-84e3-44f3-bb46-37288acdc2b6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "7168d948-99e7-4fc8-98b3-2e985fe5d265")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -3.125 -1.75)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "bda93348-5ef5-405f-9445-e17756797ccd")
+	)
+	(pad "1" smd rect
+		(at 3.125 -1.75)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "06f50556-9a09-4c9a-8ce0-159ae481021a")
+	)
+	(pad "2" smd rect
+		(at -3.125 1.75)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "efe9f2a6-11ff-4484-9bea-bca5e6bd7e35")
+	)
+	(pad "2" smd rect
+		(at 3.125 1.75)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "621e9ebe-71e5-45cf-ba64-54a6272f786d")
+	)
+	(model "${KICAD8_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_TL3305A.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

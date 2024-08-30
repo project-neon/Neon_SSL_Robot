@@ -2510,7 +2510,7 @@
 			(uuid "112bcb2e-5e8d-4dbc-9bb0-e47e475b9449")
 		)
 		(instances
-			(project ""
+			(project "Comunication Board"
 				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/092dad48-0d23-47a5-8e6b-9ea28283eebf"
 					(reference "J2")
 					(unit 1)

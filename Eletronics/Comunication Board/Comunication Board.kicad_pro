@@ -59,7 +59,13 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "lib_footprint_issues|146707500|72415000|db7c9998-e65a-442c-9799-8f50b2bae65c|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_issues|153710000|72935000|06dc5907-f798-44cd-ba72-ef81354a76cb|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|140900000|94075000|a6fc06cc-9534-47db-953e-1ec41f661ed5|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|150280000|99830000|0c6a78b8-6bbd-4797-9e53-706cc47e0986|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|161915000|84985000|1378d607-0c19-40ca-a13d-533f7b030cd8|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
@@ -489,7 +495,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "plots_comms_board/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
@@ -610,7 +616,7 @@
   "sheets": [
     [
       "4c7888e1-33c4-4d9e-9379-8d84ea02e710",
-      "Root"
+      "Raiz"
     ],
     [
       "9bba6ab3-e883-49a5-9d70-40b64b79e811",

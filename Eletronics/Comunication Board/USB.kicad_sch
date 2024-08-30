@@ -1825,7 +1825,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SMA"
+		(property "Footprint" "Diode_SMD:D_SOD-123F"
 			(at 175.26 64.135 0)
 			(effects
 				(font
@@ -1859,7 +1859,7 @@
 			(uuid "de7995d0-7052-4233-8bb8-a2ffcb901c9a")
 		)
 		(instances
-			(project ""
+			(project "Comunication Board"
 				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
 					(reference "D2")
 					(unit 1)
@@ -1893,7 +1893,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+		(property "Footprint" "usb_type_C:USB_C_Receptacle_KH-TYPE-C-16P"
 			(at 129.413 83.82 0)
 			(effects
 				(font

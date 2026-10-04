@@ -1,0 +1,5 @@
+"Reference","Value","Datasheet","Footprint","Qty","DNP","LCSC"
+"C201","0.1UF","~","Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder","1",""," C14663"
+"D201"," VESD05A1B-HD1-GS08","https://datasheet.lcsc.com/lcsc/2201300300_Vishay-Intertech-VESD05A1B-HD1-GS08_C1974572.pdf","VESD05A1B-HD1:VESD05A1B-HD1","1",""," C1974572"
+"J201","Conn_02x04_Counter_Clockwise","~","Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical_SMD","1",""," C192300"
+"U201","MT6701CT","https://datasheet.lcsc.com/lcsc/2205121145_Magn-Tek-MT6701CT-STD-R_C3003196.pdf","Package_SO:SO-8_5.3x6.2mm_P1.27mm","1","","C3003196"

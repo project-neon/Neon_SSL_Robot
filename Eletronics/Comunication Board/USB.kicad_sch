@@ -4,15 +4,6 @@
 	(generator_version "8.0")
 	(uuid "d2b077ad-1f85-4fc7-a0ed-4cd66a00e090")
 	(paper "A4")
-	(title_block
-		(title "Placa de comunicação")
-		(date "2024-05-04")
-		(rev "0")
-		(company "Project Neon")
-		(comment 1 "Autor: Leticia Martins")
-		(comment 2 "Revisão: Marcus Holanda")
-		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
-	)
 	(lib_symbols
 		(symbol "Connector:USB_C_Receptacle_USB2.0"
 			(pin_names
@@ -986,7 +977,7 @@
 				)
 			)
 		)
-		(symbol "Diode:1N4007"
+		(symbol "Diode:SS34"
 			(pin_numbers hide)
 			(pin_names
 				(offset 1.016) hide)
@@ -1001,7 +992,7 @@
 					)
 				)
 			)
-			(property "Value" "1N4007"
+			(property "Value" "SS34"
 				(at 0 -2.54 0)
 				(effects
 					(font
@@ -1009,7 +1000,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+			(property "Footprint" "Diode_SMD:D_SMA"
 				(at 0 -4.445 0)
 				(effects
 					(font
@@ -1018,7 +1009,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
+			(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1027,7 +1018,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "1000V 1A General Purpose Rectifier Diode, DO-41"
+			(property "Description" "40V 3A Schottky Diode, SMA"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1036,7 +1027,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "diode"
+			(property "ki_keywords" "diode Schottky"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1045,7 +1036,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "D*DO?41*"
+			(property "ki_fp_filters" "D*SMA*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1054,19 +1045,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "1N4007_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
+			(symbol "SS34_0_1"
 				(polyline
 					(pts
 						(xy 1.27 0) (xy -1.27 0)
@@ -1091,8 +1070,20 @@
 						(type none)
 					)
 				)
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 			)
-			(symbol "1N4007_1_1"
+			(symbol "SS34_1_1"
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
@@ -1502,7 +1493,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.243 68.58) (xy 171.577 68.58)
+			(xy 166.243 68.58) (xy 171.45 68.58)
 		)
 		(stroke
 			(width 0)
@@ -1519,16 +1510,6 @@
 			(type default)
 		)
 		(uuid "71fb324e-9858-4daf-ac97-e998f74698c0")
-	)
-	(wire
-		(pts
-			(xy 179.197 68.58) (xy 184.023 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7baf4432-7808-4ce3-9720-a5200570288d")
 	)
 	(wire
 		(pts
@@ -1612,6 +1593,16 @@
 	)
 	(wire
 		(pts
+			(xy 179.07 68.58) (xy 184.023 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9f03ec9-eddf-4dde-8ac1-e0305ecd50ee")
+	)
+	(wire
+		(pts
 			(xy 149.733 73.66) (xy 159.893 73.66)
 		)
 		(stroke
@@ -1629,25 +1620,6 @@
 			(type default)
 		)
 		(uuid "ff37633b-27b1-4f08-b4a4-08a541b2a957")
-	)
-	(text_box "Ajustes:\nTrocar o diodo pelo tipo Schottky Barrier"
-		(exclude_from_sim no)
-		(at 208.28 52.07 0)
-		(size 34.29 60.96)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "c6c3240b-4fe8-4b25-83d7-8039db412e51")
 	)
 	(global_label "USB_D+"
 		(shape input)
@@ -1761,76 +1733,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:1N4007")
-		(at 175.387 68.58 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "16bb6f64-768b-41ef-afe2-b3e916259863")
-		(property "Reference" "D1"
-			(at 174.752 64.389 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-		(property "Value" "1N4007"
-			(at 172.212 65.405 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SMA"
-			(at 175.387 64.135 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
-			(at 175.387 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 175.387 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2d041a3a-ab0e-4d4e-a349-e3e1c7b436ff")
-		)
-		(pin "2"
-			(uuid "34db004c-7826-4809-a03c-38dc44b32fe9")
-		)
-		(instances
-			(project "Comunication Board"
-				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
-					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GNDREF")
 		(at 154.432 76.2 0)
 		(unit 1)
@@ -1898,6 +1800,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Diode:SS34")
+		(at 175.26 68.58 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1caabd68-2ff9-4f21-9426-fe3d83492e9c")
+		(property "Reference" "D2"
+			(at 175.5775 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SS34"
+			(at 175.5775 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123F"
+			(at 175.26 64.135 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/88751/ss32.pdf"
+			(at 175.26 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "40V 3A Schottky Diode, SMA"
+			(at 175.26 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8ae73edb-ee4b-4bfb-afd6-b17e69aeee28")
+		)
+		(pin "2"
+			(uuid "de7995d0-7052-4233-8bb8-a2ffcb901c9a")
+		)
+		(instances
+			(project "Comunication Board"
+				(path "/4c7888e1-33c4-4d9e-9379-8d84ea02e710/5e8a06e2-a335-4ba3-808d-a5ad2b04f309"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:USB_C_Receptacle_USB2.0")
 		(at 125.603 83.82 0)
 		(unit 1)
@@ -1923,7 +1893,7 @@
 				)
 			)
 		)
-		(property "Footprint" "c:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+		(property "Footprint" "usb_type_C:USB_C_Receptacle_KH-TYPE-C-16P"
 			(at 129.413 83.82 0)
 			(effects
 				(font

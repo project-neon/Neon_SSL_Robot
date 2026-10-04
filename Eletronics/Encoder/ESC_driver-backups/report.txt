@@ -1,0 +1,11 @@
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-F_Cu.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-B_Cu.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-F_Paste.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-B_Paste.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-F_Silkscreen.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-B_Silkscreen.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-F_Mask.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-B_Mask.gbr'.
+Plotted to 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-Edge_Cuts.gbr'.
+Created Gerber job file 'D:\Users\Mariana Rego\Downloads\encoder (1)\encoder\encoder\ESC_driver-job.gbrjob'.
+Info: Done.

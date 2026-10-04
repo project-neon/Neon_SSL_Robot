@@ -4,15 +4,6 @@
 	(generator_version "8.0")
 	(uuid "60262e0a-1416-4404-8fe5-a2d526cad593")
 	(paper "A4")
-	(title_block
-		(title "Placa de comunicação")
-		(date "2024-05-04")
-		(rev "0")
-		(company "Project Neon")
-		(comment 1 "Autor: Leticia Martins")
-		(comment 2 "Revisão: Marcus Holanda")
-		(comment 3 "Documento com alterações necessárias, não é um docuemnto final")
-	)
 	(lib_symbols
 		(symbol "Device:C_Polarized"
 			(pin_numbers hide)

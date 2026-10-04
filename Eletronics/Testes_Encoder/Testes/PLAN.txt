@@ -1,0 +1,893 @@
+# Prompts de Teste — ESP32 + MT6701 + SimpleFOC + DRV8313 + BLDC
+
+## 0. Contexto geral do projeto
+
+Estou desenvolvendo e testando o acionamento de um motor BLDC utilizando uma ESP32, um encoder magnético MT6701 e um driver trifásico DRV8313.
+
+Quero utilizar a biblioteca SimpleFOC para implementar o controle do motor.
+
+Considere as seguintes informações como contexto fixo deste projeto:
+
+### Microcontrolador
+
+- Placa: ESP32
+- Interface de programação: Arduino IDE
+- Biblioteca de controle: SimpleFOC
+- Comunicação com o encoder: I2C
+- SDA: GPIO 21
+- SCL: GPIO 22
+
+### Encoder
+
+- Modelo: MT6701
+- Interface: I2C
+- Endereço I2C utilizado no código atual: `0x06`
+- Resolução: 14 bits
+- Resolução numérica: 16384 posições por volta
+- Faixa angular: `0` até aproximadamente `2π rad`
+- O encoder está montado na traseira do motor.
+- O ímã está preso ao eixo do motor e gira solidariamente com o rotor.
+- O ímã está mecanicamente alinhado com o MT6701 para permitir a medição correta da posição angular.
+- Não pretendo utilizar ângulo acumulado neste momento.
+- Portanto, não quero implementar unwrap do ângulo absoluto.
+- Quero trabalhar principalmente com:
+  - posição angular mecânica em radianos;
+  - velocidade angular em rad/s;
+  - sentido de rotação.
+
+### Motor
+
+- Modelo: GBM2804H-100T
+- Tipo: BLDC
+- Configuração: 12N14P
+- Número de slots: 12
+- Número de polos: 14
+- Número de pares de polos: 7
+- Pole pairs para o SimpleFOC: `7`
+- Resistência de fase informada: `11,2 Ω`
+- Tensão máxima da fonte de bancada: `16,8 V`
+- A fonte será utilizada para simular uma bateria LiPo 4S totalmente carregada.
+- Quero limitar a tensão máxima aplicada pelo controle do motor para `12 V`.
+- O motor deve ser testado inicialmente sem carga mecânica e, preferencialmente, sem as rodas instaladas.
+
+### Driver
+
+- Driver trifásico: DRV8313
+- O DRV8313 será utilizado para acionar as três fases do motor BLDC.
+- Saídas PWM da ESP32:
+  - Fase U: GPIO 25
+  - Fase V: GPIO 26
+  - Fase W: GPIO 27
+- Pino Enable:
+  - GPIO 14
+- Os três pinos ENABLE do DRV8313 serão ligados/jumpeados juntos.
+- O GPIO 14 da ESP32 será utilizado para controlar o ENABLE conjunto.
+- Antes de acionar o motor, quero garantir que o ENABLE esteja configurado corretamente.
+- O barramento de alimentação do driver/motor pode chegar a 16,8 V.
+- O software deve limitar a tensão máxima de comando do motor a 12 V.
+
+### Objetivo final
+
+Quero chegar a um sistema em que:
+
+ESP32
+→ lê MT6701
+→ conhece a posição do rotor
+→ SimpleFOC executa o FOC
+→ SimpleFOC controla a velocidade do motor
+→ ESP32 gera os sinais PWM
+→ DRV8313 aciona as três fases
+→ motor BLDC gira com controle de velocidade
+
+Quero chegar posteriormente a um controle de velocidade em rad/s utilizando PID.
+
+---
+
+# TESTE 1 — Validar o MT6701 isoladamente
+
+## Prompt
+
+Estou começando o TESTE 1 do meu projeto.
+
+Quero validar o funcionamento do encoder MT6701 conectado diretamente à ESP32, sem utilizar o SimpleFOC e sem acionar o motor pelo DRV8313 neste primeiro momento.
+
+Meu hardware é:
+
+- ESP32
+- MT6701 via I2C
+- SDA = GPIO 21
+- SCL = GPIO 22
+- Endereço I2C do MT6701 = `0x06`
+- Resolução = 14 bits
+- 16384 contagens por volta
+
+O MT6701 está instalado na traseira de um motor BLDC GBM2804H-100T. O ímã está preso ao eixo do motor e gira junto com o eixo. O ímã está mecanicamente alinhado com o encoder.
+
+Quero um programa de teste que:
+
+1. Inicialize o I2C.
+2. Leia o MT6701.
+3. Leia o ângulo absoluto.
+4. Converta a leitura para radianos.
+5. Calcule a velocidade angular em rad/s.
+6. Identifique o sentido de rotação.
+7. Faça a correção de wrap-around apenas no cálculo do delta angular entre duas leituras.
+8. Não implemente ângulo acumulado ou unwrap do ângulo absoluto.
+9. Mostre no Serial Monitor:
+   - ângulo em rad;
+   - velocidade em rad/s;
+   - sentido de rotação.
+10. Faça tratamento de erro caso o MT6701 não responda corretamente pelo I2C.
+
+Quero que você:
+
+- forneça o código completo;
+- explique o código linha por linha;
+- explique como conectar fisicamente o MT6701 à ESP32;
+- explique o que devo observar no Serial Monitor;
+- explique como testar o sentido CW e CCW;
+- explique como verificar se o ângulo está correto;
+- explique quais resultados indicariam erro de comunicação;
+- explique como validar se a velocidade medida está razoavelmente correta.
+
+Considere que tenho pouco conhecimento de programação. Não pule etapas e não assuma que eu já conheço conceitos de C++, Arduino ou I2C.
+
+No final, forneça um checklist objetivo para eu decidir se o TESTE 1 foi aprovado.
+
+---
+
+# TESTE 2 — Integrar o MT6701 ao SimpleFOC
+
+## Prompt
+
+O TESTE 1 do meu projeto foi concluído e agora quero iniciar o TESTE 2.
+
+Quero integrar o encoder magnético MT6701 ao SimpleFOC na ESP32, mas ainda não quero acionar o motor pelo DRV8313.
+
+O objetivo deste teste é validar que o SimpleFOC consegue utilizar corretamente o MT6701 como sensor de posição.
+
+Meu hardware é:
+
+- ESP32
+- MT6701 via I2C
+- SDA = GPIO 21
+- SCL = GPIO 22
+- MT6701 com endereço I2C `0x06`
+- Encoder de 14 bits
+- Motor GBM2804H-100T
+- Motor 12N14P
+- 7 pole pairs
+
+O encoder está montado na traseira do motor e o ímã gira junto com o eixo do rotor. O alinhamento mecânico entre ímã e MT6701 está correto.
+
+Quero utilizar a biblioteca SimpleFOC.
+
+Neste teste:
+
+- o DRV8313 não será utilizado para movimentar o motor;
+- quero apenas validar o sensor;
+- quero verificar se o SimpleFOC consegue ler o ângulo;
+- quero verificar se o SimpleFOC consegue estimar a velocidade;
+- não quero utilizar ângulo acumulado;
+- não quero implementar unwrap do ângulo absoluto.
+
+Quero que você:
+
+1. Verifique qual classe/API do SimpleFOC é adequada para utilizar o MT6701 via I2C na versão atual da biblioteca.
+2. Explique se existe suporte nativo direto ao MT6701.
+3. Caso exista, utilize a API oficial apropriada.
+4. Caso não exista suporte direto, explique como criar uma classe de sensor compatível com o SimpleFOC utilizando o código de leitura I2C que já validamos.
+5. Mostre o código completo.
+6. Explique cada parte do código.
+7. Explique como o SimpleFOC obtém o ângulo do sensor.
+8. Explique como o SimpleFOC calcula a velocidade.
+9. Explique a diferença entre a velocidade que eu calculei manualmente no TESTE 1 e a velocidade calculada pelo SimpleFOC.
+10. Explique como verificar no Serial Monitor se o sensor está funcionando corretamente.
+
+Quero um teste exclusivamente de leitura do sensor.
+
+Não quero ainda:
+- PWM para o motor;
+- acionamento do DRV8313;
+- `motor.initFOC()`;
+- controle de velocidade;
+- controle PID.
+
+No final, forneça um checklist para validar se o TESTE 2 foi aprovado.
+
+---
+
+# TESTE 3 — Testar ESP32 + DRV8313 + BLDC em malha aberta
+
+## Prompt
+
+O TESTE 2 foi concluído e agora quero iniciar o TESTE 3.
+
+Quero testar fisicamente o meu motor BLDC utilizando:
+
+- ESP32
+- DRV8313
+- motor BLDC GBM2804H-100T
+
+Neste teste, o MT6701 pode estar conectado, mas ainda não quero utilizá-lo para controlar o motor.
+
+Quero testar o acionamento do BLDC em malha aberta utilizando o SimpleFOC.
+
+Hardware:
+
+### ESP32
+
+- PWM fase U: GPIO 25
+- PWM fase V: GPIO 26
+- PWM fase W: GPIO 27
+- ENABLE do DRV8313: GPIO 14
+- I2C SDA do MT6701: GPIO 21
+- I2C SCL do MT6701: GPIO 22
+
+### DRV8313
+
+- Driver trifásico
+- As três fases do motor serão conectadas às três saídas do DRV8313.
+- Os três sinais ENABLE do DRV8313 serão interligados/jumpeados.
+- O ENABLE conjunto será controlado pelo GPIO 14 da ESP32.
+
+### Fonte
+
+- Fonte de bancada de até 16,8 V.
+- Essa fonte representa uma bateria LiPo 4S totalmente carregada.
+- Quero limitar a tensão máxima comandada pelo SimpleFOC para 12 V.
+- Não quero que o software aplique mais de 12 V de tensão ao motor.
+
+### Motor
+
+- GBM2804H-100T
+- BLDC
+- 12N14P
+- 7 pole pairs
+- Resistência de fase: 11,2 Ω
+
+Quero que você monte um programa para testar o motor em malha aberta.
+
+Quero que você:
+
+1. Configure corretamente o `BLDCMotor`.
+2. Configure corretamente o `BLDCDriver3PWM`.
+3. Utilize os GPIOs 25, 26 e 27 para PWM.
+4. Configure o GPIO 14 como ENABLE.
+5. Explique como o ENABLE deve funcionar.
+6. Configure a tensão de alimentação do driver como 16,8 V.
+7. Limite `motor.voltage_limit` a 12 V.
+8. Explique por que `voltage_power_supply` e `voltage_limit` são valores diferentes.
+9. Configure os 7 pole pairs.
+10. Explique o que deve ser configurado para o motor de 11,2 Ω.
+11. Explique se devo configurar resistência de fase, KV ou outros parâmetros neste primeiro teste.
+12. Explique a frequência PWM escolhida.
+13. Explique a conexão elétrica entre ESP32, DRV8313 e motor.
+14. Explique a necessidade de GND comum.
+15. Explique os cuidados com a fonte de 16,8 V.
+16. Explique como testar inicialmente com baixa tensão de comando.
+17. Explique como aumentar gradualmente o comando.
+18. Explique o que observar no motor.
+19. Explique quais sintomas indicam erro na sequência das fases.
+20. Explique quais sintomas indicam problema de alimentação.
+21. Explique como desligar o motor imediatamente em caso de comportamento anormal.
+
+Quero que o motor seja testado inicialmente sem carga mecânica e sem rodas.
+
+Não quero ainda utilizar controle fechado por sensor.
+
+No final, forneça um checklist objetivo para validar se o TESTE 3 foi aprovado.
+
+---
+
+# TESTE 4 — Integrar MT6701 + DRV8313 + BLDC e executar FOC
+
+## Prompt
+
+Os TESTES 1, 2 e 3 foram concluídos.
+
+Agora quero iniciar o TESTE 4.
+
+Quero integrar:
+
+- ESP32
+- MT6701
+- SimpleFOC
+- DRV8313
+- motor BLDC GBM2804H-100T
+
+O objetivo deste teste é executar FOC em malha fechada utilizando o MT6701 como sensor de posição do rotor.
+
+Hardware:
+
+### ESP32
+
+- PWM fase U: GPIO 25
+- PWM fase V: GPIO 26
+- PWM fase W: GPIO 27
+- ENABLE DRV8313: GPIO 14
+- I2C SDA MT6701: GPIO 21
+- I2C SCL MT6701: GPIO 22
+
+### MT6701
+
+- I2C
+- Endereço `0x06`
+- Resolução 14 bits
+- Ímã montado no eixo do motor
+- Ímã alinhado mecanicamente ao encoder
+
+### Motor
+
+- GBM2804H-100T
+- BLDC
+- 12N14P
+- 7 pole pairs
+- Resistência de fase: 11,2 Ω
+
+### DRV8313
+
+- Três fases conectadas ao motor.
+- PWM U = GPIO 25
+- PWM V = GPIO 26
+- PWM W = GPIO 27
+- ENABLEs interligados.
+- ENABLE = GPIO 14
+
+### Alimentação
+
+- Fonte máxima: 16,8 V
+- Fonte simulando bateria LiPo 4S carregada
+- Tensão máxima de comando do motor: 12 V
+
+Quero agora utilizar:
+
+- `motor.init()`
+- `motor.initFOC()`
+- `motor.loopFOC()`
+
+Quero que você explique profundamente:
+
+1. O que é FOC.
+2. Por que o FOC precisa conhecer a posição do rotor.
+3. O que significa posição mecânica.
+4. O que significa posição elétrica.
+5. Por que um motor 14 polos possui 7 pole pairs.
+6. Como o SimpleFOC converte a posição mecânica do MT6701 em posição elétrica.
+7. O que acontece durante `motor.initFOC()`.
+8. O que significa alinhamento do sensor.
+9. O que pode acontecer fisicamente durante o alinhamento.
+10. Por que o motor pode vibrar ou se mover durante o alinhamento.
+11. Como determinar se o alinhamento foi bem-sucedido.
+12. Como lidar com uma possível inversão do sentido de rotação.
+13. Como identificar uma ordem de fases incorreta.
+14. Como limitar a tensão máxima a 12 V.
+15. Como iniciar o teste com baixo comando.
+16. Como parar o motor de maneira segura.
+
+Quero um código completo e comentado.
+
+Quero que o código seja preparado para um primeiro teste de FOC seguro.
+
+O motor deve estar sem carga e sem rodas.
+
+Não quero ainda implementar o controle PID de velocidade.
+
+Quero primeiro verificar se:
+
+- o sensor é reconhecido;
+- o motor é alinhado;
+- o FOC inicializa;
+- o motor consegue manter torque;
+- o motor responde corretamente sem comportamento anormal.
+
+No final, forneça um checklist para decidir se o TESTE 4 foi aprovado.
+
+---
+
+# TESTE 5 — Controle de torque/corrente com FOC
+
+## Prompt
+
+Os TESTES 1, 2, 3 e 4 foram concluídos.
+
+Agora quero iniciar o TESTE 5.
+
+Meu sistema é:
+
+ESP32
++
+MT6701
++
+SimpleFOC
++
+DRV8313
++
+GBM2804H-100T
+
+O objetivo deste teste é entender e validar o controle de torque/corrente utilizando FOC antes de implementar o controle de velocidade.
+
+Hardware:
+
+- ESP32
+- PWM U = GPIO 25
+- PWM V = GPIO 26
+- PWM W = GPIO 27
+- ENABLE = GPIO 14
+- MT6701 SDA = GPIO 21
+- MT6701 SCL = GPIO 22
+- Motor = GBM2804H-100T
+- Motor = 12N14P
+- Pole pairs = 7
+- Resistência de fase = 11,2 Ω
+- Fonte = 16,8 V
+- Limite máximo de tensão = 12 V
+- Driver = DRV8313
+
+Quero que você explique:
+
+1. O que é torque control no SimpleFOC.
+2. O que significa `TorqueControlType::voltage`.
+3. O que significa `TorqueControlType::dc_current`.
+4. O que significa `TorqueControlType::foc_current`.
+5. Quais desses modos são possíveis com meu hardware atual.
+6. Se o DRV8313 fornece medição de corrente suficiente para controle FOC de corrente.
+7. Se eu preciso de sensores externos de corrente.
+8. Qual modo devo usar neste primeiro teste.
+9. Como limitar o torque para evitar danos ao motor.
+10. Como testar o motor parado.
+11. Como aplicar pequenos comandos de torque.
+12. Como observar a resposta do motor.
+13. Como verificar se o sentido de torque está correto.
+14. Como identificar desalinhamento.
+15. Como identificar instabilidade no FOC.
+16. Como verificar aquecimento do motor.
+17. Como verificar aquecimento do DRV8313.
+
+Quero um código completo para o teste recomendado.
+
+Explique o código linha por linha.
+
+Não quero ainda implementar PID de velocidade.
+
+No final, forneça um checklist para decidir se o TESTE 5 foi aprovado.
+
+---
+
+# TESTE 6 — Controle de velocidade com PID usando MT6701
+
+## Prompt
+
+Os TESTES 1, 2, 3, 4 e 5 foram concluídos.
+
+Agora quero iniciar o TESTE 6.
+
+Quero implementar o controle de velocidade do meu motor BLDC utilizando o SimpleFOC.
+
+Sistema:
+
+- ESP32
+- MT6701 via I2C
+- SimpleFOC
+- DRV8313
+- GBM2804H-100T
+- 12N14P
+- 7 pole pairs
+- Resistência de fase = 11,2 Ω
+
+Pinos:
+
+- PWM U = GPIO 25
+- PWM V = GPIO 26
+- PWM W = GPIO 27
+- ENABLE = GPIO 14
+- SDA = GPIO 21
+- SCL = GPIO 22
+
+Alimentação:
+
+- Fonte máxima = 16,8 V
+- Simulação de bateria LiPo 4S carregada
+- Limite de tensão do motor = 12 V
+
+Quero controlar a velocidade angular em:
+
+`rad/s`
+
+Não quero utilizar ângulo acumulado.
+
+Não quero implementar unwrap do ângulo absoluto.
+
+Quero que a velocidade seja obtida a partir da posição do MT6701 e utilizada pelo SimpleFOC para controle de velocidade.
+
+Quero que você explique:
+
+1. O que é controle de velocidade em malha fechada.
+2. O que é referência de velocidade.
+3. O que é velocidade medida.
+4. O que é erro de velocidade.
+5. Como funciona o PID.
+6. O significado dos ganhos P, I e D.
+7. Como o SimpleFOC utiliza o PID de velocidade.
+8. Qual é a frequência de atualização do controle.
+9. Como escolher uma referência em rad/s.
+10. Como converter RPM para rad/s.
+11. Como converter rad/s para RPM.
+12. Como configurar o limite de velocidade.
+13. Como configurar o limite de tensão.
+14. Como configurar o PID inicialmente.
+15. Como fazer a sintonia do PID de forma segura.
+16. Como identificar ganho P muito baixo.
+17. Como identificar ganho P muito alto.
+18. Como identificar integral excessiva.
+19. Como identificar oscilações.
+20. Como testar diferentes velocidades.
+
+Quero um programa completo para controle de velocidade.
+
+Quero inicialmente utilizar uma referência fixa, por exemplo:
+
+`10 rad/s`
+
+Depois quero alterar a referência pelo Serial Monitor.
+
+Quero poder enviar comandos como:
+
+`10`
+
+`20`
+
+`30`
+
+e fazer o motor buscar essas velocidades em rad/s.
+
+Quero também um comando para parar o motor com segurança.
+
+Explique o código linha por linha.
+
+No final, forneça um procedimento de sintonia do PID em etapas, começando com valores conservadores.
+
+Também forneça um checklist para validar se o TESTE 6 foi aprovado.
+
+---
+
+# TESTE 7 — Validação completa do sistema
+
+## Prompt
+
+Todos os testes anteriores foram concluídos.
+
+Agora quero realizar uma validação completa do sistema:
+
+ESP32
++
+MT6701
++
+SimpleFOC
++
+DRV8313
++
+GBM2804H-100T
+
+Configuração:
+
+- Motor: GBM2804H-100T
+- BLDC
+- 12N14P
+- 7 pole pairs
+- Resistência de fase: 11,2 Ω
+- Encoder: MT6701
+- Encoder: 14 bits
+- I2C: endereço `0x06`
+- SDA: GPIO 21
+- SCL: GPIO 22
+- DRV8313
+- PWM U: GPIO 25
+- PWM V: GPIO 26
+- PWM W: GPIO 27
+- ENABLE: GPIO 14
+- ENABLEs do DRV8313 interligados
+- Fonte: até 16,8 V
+- Limite de tensão do motor: 12 V
+
+Quero realizar uma bateria de testes para validar o sistema antes de utilizá-lo no robô.
+
+Quero testar:
+
+1. Comunicação I2C.
+2. Leitura do MT6701.
+3. Ângulo.
+4. Velocidade em rad/s.
+5. Sentido de rotação.
+6. Alinhamento do sensor.
+7. Inicialização do FOC.
+8. Funcionamento do DRV8313.
+9. Funcionamento das três fases.
+10. Controle de torque.
+11. Controle de velocidade.
+12. Resposta a mudanças de referência.
+13. Estabilidade do PID.
+14. Comportamento em baixa velocidade.
+15. Comportamento em alta velocidade.
+16. Aquecimento do motor.
+17. Aquecimento do DRV8313.
+18. Corrente consumida.
+19. Comportamento ao parar.
+20. Comportamento após desligar e religar.
+21. Segurança em caso de perda do sensor.
+22. Segurança em caso de falha de comunicação I2C.
+23. Segurança em caso de comando inválido.
+24. Segurança em caso de sobrevelocidade.
+
+Quero que você monte um plano de validação completo.
+
+Para cada teste, informe:
+
+- objetivo;
+- configuração;
+- procedimento;
+- variável observada;
+- resultado esperado;
+- critério de aprovação;
+- possíveis falhas;
+- diagnóstico provável;
+- ação corretiva.
+
+No final, monte uma tabela de aprovação geral do sistema.
+
+---
+
+# TESTE 8 — Preparar o código para integração ao robô
+
+## Prompt
+
+Os testes individuais do sistema BLDC foram concluídos e agora quero preparar o código para integrar o motor ao meu robô.
+
+O sistema atual é:
+
+ESP32
++
+MT6701
++
+SimpleFOC
++
+DRV8313
++
+GBM2804H-100T
+
+Configuração:
+
+- Motor: 12N14P
+- Pole pairs: 7
+- Resistência de fase: 11,2 Ω
+- MT6701:
+  - SDA = GPIO 21
+  - SCL = GPIO 22
+  - I2C address = `0x06`
+  - 14 bits
+- DRV8313:
+  - PWM U = GPIO 25
+  - PWM V = GPIO 26
+  - PWM W = GPIO 27
+  - ENABLE = GPIO 14
+- Fonte: 16,8 V
+- Limite de tensão: 12 V
+
+Quero agora organizar o código para uso no robô.
+
+No robô, o motor será utilizado para locomoção omnidirecional.
+
+O controle superior poderá fornecer uma referência de velocidade para cada motor.
+
+Quero separar claramente:
+
+1. Inicialização do hardware.
+2. Inicialização do encoder.
+3. Inicialização do driver.
+4. Inicialização do motor.
+5. Inicialização do FOC.
+6. Controle de velocidade.
+7. Recebimento de comandos.
+8. Proteções.
+9. Telemetria.
+10. Diagnóstico.
+
+Quero que você proponha uma arquitetura de software adequada para ESP32.
+
+Quero evitar bloqueios com `delay()` no loop principal.
+
+Quero que o controle do motor rode em uma frequência apropriada.
+
+Quero que você explique:
+
+- frequência recomendada para `loopFOC()`;
+- frequência recomendada para atualização da referência de velocidade;
+- frequência recomendada para telemetria;
+- como separar tarefas no ESP32;
+- se devo usar FreeRTOS ou manter um único loop inicialmente;
+- como organizar o código em arquivos `.h` e `.cpp`;
+- como estruturar uma classe para cada motor;
+- como futuramente controlar quatro motores.
+
+Quero que a arquitetura seja preparada para:
+
+- 4 motores BLDC;
+- 4 encoders MT6701;
+- 4 drivers DRV8313;
+- comunicação com outro ESP32;
+- recebimento de velocidades desejadas;
+- controle individual de cada motor.
+
+Não quero implementar tudo de uma vez.
+
+Quero uma arquitetura incremental que permita evoluir o código sem reescrever tudo.
+
+---
+
+# TESTE 9 — Preparar quatro motores para o robô
+
+## Prompt
+
+Agora quero evoluir o sistema de um único motor para quatro motores BLDC do meu robô.
+
+Cada motor terá:
+
+- 1 ESP32 ou arquitetura equivalente definida posteriormente;
+- 1 MT6701;
+- 1 DRV8313;
+- 1 motor BLDC GBM2804H-100T.
+
+Cada motor possui:
+
+- 12N14P;
+- 7 pole pairs;
+- resistência de fase de 11,2 Ω.
+
+Quero estruturar o software para controlar quatro motores.
+
+O controle de cada motor deve receber uma referência de velocidade angular em rad/s.
+
+Quero uma arquitetura em que cada motor possa ter:
+
+- velocidade desejada;
+- velocidade medida;
+- erro de velocidade;
+- sentido;
+- ângulo;
+- estado;
+- falha;
+- limite de velocidade;
+- limite de tensão.
+
+Quero que você proponha:
+
+1. Estrutura de dados para cada motor.
+2. Classe ou objeto para cada motor.
+3. Inicialização dos quatro motores.
+4. Organização dos GPIOs.
+5. Organização dos sensores.
+6. Organização dos drivers.
+7. Controle dos quatro `loopFOC()`.
+8. Atualização dos quatro controladores de velocidade.
+9. Telemetria.
+10. Diagnóstico.
+11. Tratamento de falhas.
+
+Também quero que você explique as limitações de usar quatro motores BLDC controlados por FOC em uma única ESP32.
+
+Quero avaliar:
+
+- tempo de processamento;
+- frequência de controle;
+- frequência de PWM;
+- comunicação I2C;
+- número de barramentos I2C necessários;
+- possíveis conflitos de endereço dos MT6701;
+- necessidade de multiplexador I2C;
+- uso de múltiplos ESP32.
+
+Quero uma proposta técnica para decidir entre:
+
+A) uma ESP32 controlando os quatro motores;
+
+B) duas ESP32, cada uma controlando dois motores;
+
+C) quatro ESP32, uma por motor.
+
+Considere que meu robô já possui uma arquitetura baseada em ESP32 e STM32 BluePill e que estou avaliando uma futura migração da lógica de controle dos motores.
+
+Não implemente o código completo ainda.
+
+Primeiro faça a análise arquitetural e recomende a melhor opção.
+
+---
+
+# TESTE 10 — Diagnóstico e segurança do sistema
+
+## Prompt
+
+Quero criar uma camada de segurança para o sistema de controle BLDC.
+
+Hardware:
+
+- ESP32
+- MT6701
+- DRV8313
+- GBM2804H-100T
+- Fonte de até 16,8 V
+- Limite de tensão do motor = 12 V
+
+Quero que o sistema seja capaz de detectar:
+
+1. Falha do MT6701.
+2. Falha de comunicação I2C.
+3. Leitura de ângulo inválida.
+4. Velocidade impossível.
+5. Perda de atualização do sensor.
+6. Comando de velocidade acima do limite.
+7. Sobreaquecimento, caso exista sensor.
+8. Falha do driver.
+9. Desabilitação do ENABLE.
+10. Perda de comunicação com o computador ou controlador superior.
+
+Quero que você proponha uma máquina de estados para o motor:
+
+- `INIT`
+- `DISABLED`
+- `ALIGNING`
+- `READY`
+- `RUNNING`
+- `FAULT`
+
+Explique cada estado.
+
+Explique quais condições fazem o motor passar de um estado para outro.
+
+Quero que o motor seja desabilitado automaticamente em caso de falha crítica.
+
+Quero também um sistema de timeout para comunicação.
+
+Se não houver comando novo durante determinado tempo, o motor deve reduzir a velocidade e parar.
+
+Quero que você proponha uma implementação segura e explique como evitar situações em que o motor continue girando sem receber comandos.
+
+Não quero apenas código.
+
+Quero primeiro a análise da arquitetura de segurança e depois um exemplo de implementação.
+
+---
+
+# ORDEM RECOMENDADA DOS TESTES
+
+A sequência recomendada é:
+
+```text
+TESTE 1
+MT6701 isolado
+        ↓
+TESTE 2
+MT6701 + SimpleFOC
+        ↓
+TESTE 3
+DRV8313 + BLDC em malha aberta
+        ↓
+TESTE 4
+MT6701 + DRV8313 + FOC
+        ↓
+TESTE 5
+FOC + controle de torque
+        ↓
+TESTE 6
+FOC + controle de velocidade + PID
+        ↓
+TESTE 7
+Validação completa
+        ↓
+TESTE 8
+Arquitetura de software
+        ↓
+TESTE 9
+Quatro motores
+        ↓
+TESTE 10
+Segurança e diagnóstico
